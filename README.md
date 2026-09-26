@@ -353,10 +353,6 @@ src/adaor/
     └── flux_klein.py        FLUX.2 Klein adapter
 ```
 
-Quantitative evaluation (PIE-Bench, slider baselines, metrics) lives in a
-separate repository:
-[DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance).
-
 ## 🔗 Links
 
 | | |
@@ -365,7 +361,6 @@ separate repository:
 | 🌐 Project page | [adaor-paper.github.io](https://adaor-paper.github.io/) |
 | ✍️ Blog post | ["What if video editing had a volume knob?"](https://research.decart.ai/adaptive-origin-guidance) — Decart Research |
 | 🎬 Backbone | [Lucy Edit 1.1](https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev) on Hugging Face |
-| 📊 Evaluation code | [DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance) |
 | 👤 Author | [Alon Wolf](https://a1wo.github.io/) · [Google Scholar](https://scholar.google.com/citations?user=VLHXMrgAAAAJ) · [X](https://x.com/AlonWolfy) · [LinkedIn](https://www.linkedin.com/in/alon-wolf/) |
 
 ## 📝 Citation
