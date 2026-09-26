@@ -1,0 +1,11 @@
+# Runtime dependencies for running a backbone.
+# The guidance rule in src/adaor/guidance.py needs none of these.
+torch>=2.1
+diffusers>=0.32
+transformers>=4.44
+accelerate>=0.30
+safetensors>=0.4
+pillow>=10.0
+
+# Sweep contact sheets (scripts/make_strip.py)
+numpy>=1.24

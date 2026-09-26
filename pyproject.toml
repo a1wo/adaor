@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "adaor"
+version = "0.1.0"
+description = "Continuous Control of Editing Models via Adaptive-Origin Guidance"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [
+    { name = "Alon Wolf", email = "alonwolfy@gmail.com" },
+    { name = "Or Patashnik" },
+    { name = "Chen Katzir" },
+    { name = "Kfir Aberman" },
+]
+keywords = ["diffusion", "image-editing", "video-editing", "classifier-free-guidance"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# The guidance rule itself is pure arithmetic and needs nothing. Running a
+# backbone needs the `inference` extra.
+dependencies = []
+
+[project.optional-dependencies]
+inference = [
+    "torch>=2.1",
+    "diffusers>=0.32",
+    "transformers>=4.44",
+    "accelerate>=0.30",
+    "safetensors>=0.4",
+    "pillow>=10.0",
+]
+dev = [
+    "pytest>=7.4",
+    "numpy>=1.24",
+]
+
+[project.urls]
+Paper = "https://adaor-paper.github.io"
+Repository = "https://github.com/a1wo/adaor"
+
+[project.scripts]
+adaor-sweep = "adaor.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
