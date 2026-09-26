@@ -1,12 +1,48 @@
-# Continuous Control of Editing Models via Adaptive-Origin Guidance
+<h1 align="center">Continuous Control of Editing Models<br>via Adaptive-Origin Guidance</h1>
 
-Reference implementation of **AdaOr** — Adaptive-Origin Guidance — a way to turn
-the edit strength of an instruction-based diffusion editing model into a
-continuous dial.
+<p align="center">
+  <a href="https://a1wo.github.io/">Alon Wolf</a><sup>1,2</sup> ·
+  <a href="https://orpatashnik.github.io/">Or Patashnik</a><sup>1</sup> ·
+  <a href="https://www.linkedin.com/in/chen-katzir-8549a6169/">Chen Katzir</a><sup>2</sup> ·
+  <a href="https://kfiraberman.github.io/">Kfir Aberman</a><sup>2</sup>
+</p>
 
-**[Paper](https://adaor-paper.github.io)** ·
-Alon Wolf, Or Patashnik, Chen Katzir, Kfir Aberman ·
-Tel Aviv University, Decart.ai
+<p align="center">
+  <sup>1</sup>Tel Aviv University &nbsp;&nbsp;
+  <sup>2</sup>Decart
+</p>
+
+<p align="center">
+  <a href="https://arxiv.org/abs/2602.03826">
+    <img src="https://img.shields.io/badge/arXiv-2602.03826-b31b1b.svg" alt="arXiv">
+  </a>
+  <a href="https://adaor-paper.github.io/">
+    <img src="https://img.shields.io/badge/Project-Page-blue.svg" alt="Project page">
+  </a>
+  <a href="https://research.decart.ai/adaptive-origin-guidance">
+    <img src="https://img.shields.io/badge/Decart-Research%20Blog-0a84ff.svg" alt="Decart Research blog">
+  </a>
+  <a href="https://research.decart.ai/papers/adaptive-origin-guidance.pdf">
+    <img src="https://img.shields.io/badge/PDF-paper-green.svg" alt="PDF">
+  </a>
+  <a href="https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev">
+    <img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Lucy%20Edit-yellow.svg" alt="Lucy Edit on Hugging Face">
+  </a>
+  <a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="MIT license">
+  </a>
+  <img src="https://img.shields.io/badge/python-3.9%2B-3776ab.svg" alt="Python 3.9+">
+</p>
+
+<p align="center">
+  <strong>Reference implementation of AdaOr — Adaptive-Origin Guidance</strong><br>
+  A single continuous dial, <code>alpha ∈ [0, 1]</code>, for <em>how much</em> an
+  instruction-based diffusion editing model edits.
+</p>
+
+<p align="center">
+  <img src="assets/adaor_sweep.jpg" alt="AdaOr sweep: a continuous path from the input image to the full edit" width="95%">
+</p>
 
 ```bash
 pip install -e ".[inference]"
@@ -15,9 +51,24 @@ adaor-sweep photo.jpg "make the hair blonde" -o outputs/blonde
 
 That writes one frame per edit strength plus a `strip.png` contact sheet.
 
+## 📚 Table of Contents
+
+1. [The problem](#-the-problem)
+2. [The method](#-the-method)
+3. [Usage](#-usage)
+4. [How the integration works](#%EF%B8%8F-how-the-integration-works)
+5. [The identity instruction](#-the-identity-instruction)
+6. [Backbones](#-backbones)
+7. [Schedules](#-schedules)
+8. [Ablation: REC in the steering term](#-ablation-rec-in-the-steering-term)
+9. [Tests](#-tests)
+10. [Repository layout](#%EF%B8%8F-repository-layout)
+11. [Links](#-links)
+12. [Citation](#-citation)
+
 ---
 
-## The problem
+## 🧩 The problem
 
 Editing models have no knob for *how much* to edit. Classifier-free guidance
 looks like the obvious candidate — its scale `w` controls prompt adherence — but
@@ -39,7 +90,11 @@ edited images. Turning `w` down does not weaken the edit; it makes the edit
 arbitrary. In the paper's examples, a brown bunny turns gray and a face gets
 painted gold at low `w`.
 
-## The method
+<p align="center">
+  <img src="assets/cfg_sweep.jpg" alt="Standard CFG sweep: low guidance scale gives arbitrary edits, not the input" width="95%">
+</p>
+
+## 💡 The method
 
 Replace the fixed origin with one that depends on the edit strength `alpha`.
 
@@ -68,7 +123,7 @@ The whole rule is about twenty lines, in
 by `torch.Tensor` and `numpy.ndarray`, so it imports and unit-tests without
 either installed.
 
-## Usage
+## 🚀 Usage
 
 ### Sweep an image
 
@@ -116,7 +171,7 @@ python examples/guidance_only.py
 Prints the weight each prediction receives across the sweep, and how many
 transformer passes each step costs.
 
-## How the integration works
+## ⚙️ How the integration works
 
 A diffusers pipeline computes CFG inside its own denoising loop. Subclassing it
 means copying hundreds of lines that then rot against upstream; patching the loop
@@ -154,7 +209,7 @@ only the null and instruction predictions. Skipping is decided from the computed
 weights rather than from `alpha`, so a custom schedule that does not vanish at
 the endpoints stays correct.
 
-## The identity instruction
+## 🪞 The identity instruction
 
 AdaOr needs a condition meaning "apply the identity transformation". Two ways to
 get one:
@@ -182,7 +237,7 @@ guess rather than silently producing a meaningless identity prediction.
 Vocabulary sentinels (`<extra_id_0>`) are the safest choice; rare
 single-character tokens also work, and `adaor.find_rare_tokens` locates them.
 
-## Backbones
+## 🧠 Backbones
 
 | Backbone | Status | Notes |
 | --- | --- | --- |
@@ -218,7 +273,7 @@ class MyAdapter:
     def guidance_scale(self, call_kwargs): ...      # read w
 ```
 
-## Schedules
+## 📈 Schedules
 
 | Name | `f(alpha)` |
 | --- | --- |
@@ -253,7 +308,7 @@ sweep_edit(..., origin_schedule="linear", steer_schedule="sqrt")
 `python examples/guidance_only.py` prints both tables side by side; the variant
 ramps the steering term much faster at low `alpha`.
 
-## Ablation: REC in the steering term
+## 🔬 Ablation: REC in the steering term
 
 A natural question is whether the `REC` prediction can replace the null
 prediction everywhere — as the origin *and* in the steering direction. The paper
@@ -272,7 +327,7 @@ well-behaved null prediction as the edit strengthens.
 
 Reproduce the unstable variant with `--steer-from-identity`.
 
-## Tests
+## ✅ Tests
 
 ```bash
 pip install -e ".[dev]"
@@ -283,7 +338,7 @@ pytest
 affine-combination invariant, the forward-pass skipping, and the transformer
 proxy against a fake pipeline.
 
-## Repository layout
+## 🗂️ Repository layout
 
 ```
 src/adaor/
@@ -302,16 +357,37 @@ Quantitative evaluation (PIE-Bench, slider baselines, metrics) lives in a
 separate repository:
 [DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance).
 
-## Citation
+## 🔗 Links
+
+| | |
+| --- | --- |
+| 📄 Paper | [arXiv:2602.03826](https://arxiv.org/abs/2602.03826) · [PDF](https://research.decart.ai/papers/adaptive-origin-guidance.pdf) |
+| 🌐 Project page | [adaor-paper.github.io](https://adaor-paper.github.io/) |
+| ✍️ Blog post | ["What if video editing had a volume knob?"](https://research.decart.ai/adaptive-origin-guidance) — Decart Research |
+| 🎬 Backbone | [Lucy Edit 1.1](https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev) on Hugging Face |
+| 📊 Evaluation code | [DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance) |
+| 👤 Author | [Alon Wolf](https://a1wo.github.io/) · [Google Scholar](https://scholar.google.com/citations?user=VLHXMrgAAAAJ) · [X](https://x.com/AlonWolfy) · [LinkedIn](https://www.linkedin.com/in/alon-wolf/) |
+
+## 📝 Citation
+
+If you find this work useful, please cite:
 
 ```bibtex
-@inproceedings{wolf2026adaor,
-  title     = {Continuous Control of Editing Models via Adaptive-Origin Guidance},
-  author    = {Wolf, Alon and Patashnik, Or and Katzir, Chen and Aberman, Kfir},
-  year      = {2026},
+@article{wolf2026adaor,
+  title   = {Continuous Control of Editing Models via Adaptive-Origin Guidance},
+  author  = {Wolf, Alon and Patashnik, Or and Katzir, Chen and Aberman, Kfir},
+  journal = {arXiv preprint arXiv:2602.03826},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/2602.03826},
 }
 ```
 
-## License
+## 🙏 Acknowledgements
+
+The example frames in this README are from the
+[Decart Research post](https://research.decart.ai/adaptive-origin-guidance) on AdaOr
+and were produced with [Lucy Edit](https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev).
+
+## ⚖️ License
 
 MIT — see [LICENSE](LICENSE).

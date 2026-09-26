@@ -42,7 +42,9 @@ dev = [
 ]
 
 [project.urls]
-Paper = "https://adaor-paper.github.io"
+Paper = "https://arxiv.org/abs/2602.03826"
+"Project page" = "https://adaor-paper.github.io"
+Blog = "https://research.decart.ai/adaptive-origin-guidance"
 Repository = "https://github.com/a1wo/adaor"
 
 [project.scripts]
