@@ -2,9 +2,9 @@
 
 <p align="center">
   <a href="https://a1wo.github.io/">Alon Wolf</a><sup>1,2</sup> ·
-  <a href="https://orpatashnik.github.io/">Or Patashnik</a><sup>1</sup> ·
   <a href="https://www.linkedin.com/in/chen-katzir-8549a6169/">Chen Katzir</a><sup>2</sup> ·
-  <a href="https://kfiraberman.github.io/">Kfir Aberman</a><sup>2</sup>
+  <a href="https://kfiraberman.github.io/">Kfir Aberman</a><sup>2</sup> ·
+  <a href="https://orpatashnik.github.io/">Or Patashnik</a><sup>1</sup>
 </p>
 
 <p align="center">
@@ -364,7 +364,6 @@ separate repository, released alongside the paper.
 | 🌐 Project page | [adaor-paper.github.io](https://adaor-paper.github.io/) |
 | ✍️ Blog post | ["What if video editing had a volume knob?"](https://research.decart.ai/adaptive-origin-guidance) — Decart Research |
 | 🎬 Backbone | [Lucy Edit 1.1](https://huggingface.co/decart-ai/Lucy-Edit-1.1-Dev) on Hugging Face |
-| 📊 Evaluation code | [DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance) |
 | 👤 Author | [Alon Wolf](https://a1wo.github.io/) · [Google Scholar](https://scholar.google.com/citations?user=VLHXMrgAAAAJ) · [X](https://x.com/AlonWolfy) · [LinkedIn](https://www.linkedin.com/in/alon-wolf/) |
 
 ## 📝 Citation
@@ -374,7 +373,7 @@ If you find this work useful, please cite:
 ```bibtex
 @article{wolf2026adaor,
   title   = {Continuous Control of Editing Models via Adaptive-Origin Guidance},
-  author  = {Wolf, Alon and Patashnik, Or and Katzir, Chen and Aberman, Kfir},
+  author  = {Wolf, Alon and Katzir, Chen and Aberman, Kfir and Patashnik, Or},
   journal = {arXiv preprint arXiv:2602.03826},
   year    = {2026},
   url     = {https://arxiv.org/abs/2602.03826},
