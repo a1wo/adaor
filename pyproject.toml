@@ -10,10 +10,10 @@ readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [
-    { name = "Alon Wolf", email = "alonwolfy@gmail.com" },
-    { name = "Or Patashnik" },
+    { name = "Alon Wolf" },
     { name = "Chen Katzir" },
     { name = "Kfir Aberman" },
+    { name = "Or Patashnik" },
 ]
 keywords = ["diffusion", "image-editing", "video-editing", "classifier-free-guidance"]
 classifiers = [
@@ -42,7 +42,8 @@ dev = [
 ]
 
 [project.urls]
-Paper = "https://adaor-paper.github.io"
+Homepage = "https://adaor-paper.github.io"
+Paper = "https://arxiv.org/abs/2602.03826"
 Repository = "https://github.com/a1wo/adaor"
 
 [project.scripts]

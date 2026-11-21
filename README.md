@@ -4,9 +4,13 @@ Reference implementation of **AdaOr** — Adaptive-Origin Guidance — a way to 
 the edit strength of an instruction-based diffusion editing model into a
 continuous dial.
 
-**[Paper](https://adaor-paper.github.io)** ·
-Alon Wolf, Or Patashnik, Chen Katzir, Kfir Aberman ·
-Tel Aviv University, Decart.ai
+**[Project page](https://adaor-paper.github.io)** ·
+**[arXiv](https://arxiv.org/abs/2602.03826)** ·
+**[Blog post](https://research.decart.ai/adaptive-origin-guidance/)**
+
+Alon Wolf, Chen Katzir, Kfir Aberman, Or Patashnik ·
+Tel Aviv University, Decart.ai ·
+**ACM SIGGRAPH 2026**
 
 ```bash
 pip install -e ".[inference]"
@@ -299,16 +303,18 @@ src/adaor/
 ```
 
 Quantitative evaluation (PIE-Bench, slider baselines, metrics) lives in a
-separate repository:
-[DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance](https://github.com/DecartAI/Continuous-Control-of-Editing-Models-via-Adaptive-Origin-Guidance).
+separate repository, released alongside the paper.
 
 ## Citation
 
 ```bibtex
-@inproceedings{wolf2026adaor,
-  title     = {Continuous Control of Editing Models via Adaptive-Origin Guidance},
-  author    = {Wolf, Alon and Patashnik, Or and Katzir, Chen and Aberman, Kfir},
-  year      = {2026},
+@article{wolf2026adaor,
+  title   = {Continuous Control of Editing Models via Adaptive-Origin Guidance},
+  author  = {Wolf, Alon and Katzir, Chen and Aberman, Kfir and Patashnik, Or},
+  journal = {ACM SIGGRAPH},
+  year    = {2026},
+  eprint  = {2602.03826},
+  archivePrefix = {arXiv},
 }
 ```
 

@@ -4,30 +4,32 @@ title: "AdaOr: Continuous Control of Editing Models via Adaptive-Origin Guidance
 authors:
   - family-names: Wolf
     given-names: Alon
-    email: alonwolfy@gmail.com
     affiliation: "Tel Aviv University, Decart.ai"
-  - family-names: Patashnik
-    given-names: Or
-    affiliation: "Tel Aviv University"
   - family-names: Katzir
     given-names: Chen
     affiliation: "Decart.ai"
   - family-names: Aberman
     given-names: Kfir
     affiliation: "Decart.ai"
+  - family-names: Patashnik
+    given-names: Or
+    affiliation: "Tel Aviv University"
 license: MIT
 repository-code: "https://github.com/a1wo/adaor"
 url: "https://adaor-paper.github.io"
 preferred-citation:
   type: conference-paper
   title: "Continuous Control of Editing Models via Adaptive-Origin Guidance"
+  conference:
+    name: "ACM SIGGRAPH 2026"
   year: 2026
+  url: "https://arxiv.org/abs/2602.03826"
   authors:
     - family-names: Wolf
       given-names: Alon
-    - family-names: Patashnik
-      given-names: Or
     - family-names: Katzir
       given-names: Chen
     - family-names: Aberman
       given-names: Kfir
+    - family-names: Patashnik
+      given-names: Or
