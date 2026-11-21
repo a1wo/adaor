@@ -18,12 +18,14 @@ license: MIT
 repository-code: "https://github.com/a1wo/adaor"
 url: "https://adaor-paper.github.io"
 preferred-citation:
-  type: conference-paper
+  type: article
   title: "Continuous Control of Editing Models via Adaptive-Origin Guidance"
-  conference:
-    name: "ACM SIGGRAPH 2026"
+  journal: "arXiv preprint"
   year: 2026
   url: "https://arxiv.org/abs/2602.03826"
+  identifiers:
+    - type: other
+      value: "arXiv:2602.03826"
   authors:
     - family-names: Wolf
       given-names: Alon
